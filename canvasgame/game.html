@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery-1.12.1.js"></script>
+    <script src="js/peng.js"></script>
+    <script src="js/game.js"></script>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<script>
+    window.onload=function(){
+        var canvas=document.getElementsByTagName("canvas")[0];
+        var cobj=canvas.getContext("2d");
+        var runimg=document.getElementsByClassName("runimg");
+        var runimg2=document.getElementsByClassName("runimg2");
+        var jumpimg=document.getElementsByClassName("jumpimg");
+        var jumpimg2=document.getElementsByClassName("jumpimg2");
+        var hidesimg=document.getElementsByClassName("hidesimg");
+        var fen=$(".fenshu span:nth-child(2)")[0];
+        var life=$(".life span:nth-child(2)")[0];
+        var gameObj
+        $(".renwu1").click(function(){
+            gameObj=new game(cobj,canvas,runimg,jumpimg,hidesimg,fen,life);
+            gameObj.tunum=12;
+
+
+        })
+        $(".renwu2").click(function(){
+           gameObj=new game(cobj,canvas,runimg2,jumpimg2,hidesimg,fen,life);
+            gameObj.tunum=5;
+
+        })
+        $(".go").click(function(){
+           if(gameObj===undefined){
+               alert("请选择一个人物")
+           }
+            gameObj.play();
+            $(".begin").css({
+                display:"none"
+            })
+        })
+        $(".go").bind("mouseenter",function(){
+            $(this).css({
+                background:"#333",
+                color:"#fff"
+            })
+        })
+        $(".go").bind("mouseleave",function(){
+            $(this).css({
+                background:"none",
+                color:"#333"
+            })
+        })
+        $(".nanx div:nth-child(1)").click(function(){
+            gameObj.pobj.sudu="slow"
+            $(".nanx div").css({
+                background:"none",
+                color:"#333"
+            })
+            $(this).css({
+                background:"#333",
+                color:"#fff"
+            })
+        })
+        $(".nanx div:nth-child(2)").click(function(){
+            gameObj.pobj.sudu="nomarl"
+            $(".nanx div").css({
+                background:"none",
+                color:"#333"
+            })
+            $(this).css({
+                background:"#333",
+                color:"#fff"
+            })
+        })
+        $(".nanx div:nth-child(3)").click(function(){
+            gameObj.pobj.sudu="fraw"
+            $(".nanx div").css({
+                background:"none",
+                color:"#333"
+            })
+            $(this).css({
+                background:"#333",
+                color:"#fff"
+            })
+        })
+        $(".step").click(function(){
+             $(".one").css({
+                 display:"none"
+             })
+            $(".three").css({
+                display:"block"
+            })
+            $(".two").css({
+                background:"none",
+                color:"#333"
+            })
+            $(this).css({
+                background:"#333",
+                color:"#fff"
+            })
+        })
+        $(".person").click(function(){
+            $(".three").css({
+                display:"none"
+            })
+            $(".one").css({
+                display:"block"
+            })
+            $(".two").css({
+                background:"none",
+                color:"#333"
+            })
+            $(this).css({
+                background:"#333",
+                color:"#fff"
+            })
+        })
+        $(".one").hover(function(){
+            var index=$(".one").index(this);
+            $(".four").eq(index).css({
+                transition:"transform .5s linear",
+                transform:"translate(0,50px)"
+            })
+        },function(){
+            var index=$(".one").index(this);
+            $(".four").eq(index).css({
+                transition:"transform .5s linear",
+                transform:"translate(0,150px)"
+            })
+        })
+    }
+</script>
+<body>
+  <!--场景搭建-->
+  <div class="sorce">
+     <div class="fenshu">
+      <span>分数：</span>
+      <span>0</span>
+      <span>分</span>
+     </div>
+     <div class="life">
+      <span style="margin-left:20px">生命：</span>
+      <span>3</span>
+     </div>
+  </div>
+
+  <!--开始游戏-->
+  <div class="begin">
+      <div class="menu">
+          <div class="two person" style="background:#333;color:#fff">人物选择</div>
+          <div class="two step">关卡选择</div>
+      </div>
+      <div class="chick">
+          <div class="one renwu1"></div>
+          <div class="one renwu2"></div>
+          <div class="four fourl">
+              <span>名称：审判女王</span>
+              <span>描述：美貌与智慧的完美结合,跑酷的好选择</span>
+              <span>上手程度：中</span>
+          </div>
+          <div class="four fourr">
+              <span>名称：彼尔德</span>
+              <span>描述：一个灵活的胖子 人送外号草上飞 新手必备</span>
+              <span>上手程度：简单</span>
+          </div>
+          <!--<div class="one renwu3" style="border:none"></div>-->
+          <div class="three nan" style="border-right:1px solid #333">
+              <div class="nans">难度选择</div>
+              <div class="nanx">
+                  <div>新手玩家</div>
+                  <div>高级玩家</div>
+                  <div style="border:0">骨灰级玩家</div>
+              </div>
+          </div>
+          <div class="three play">
+              <div class="go">Ready Go!!!</div>
+          </div>
+      </div>
+  </div>
+
+  <!--游戏结束-->
+ <!-- <div class="over">
+      <div class="over-z">GAME OVER!</div>
+      <div class="over-btn">重新开始</div>
+  </div>-->
+
+  <!--画布-->
+  <canvas width="1600" height="650"></canvas>
+
+
+
+
+  <!--游戏图像-->
+
+  <!--跑动-->
+  <img src="img/run2.png" class="runimg" hidden>
+  <img src="img/run3.png" class="runimg" hidden>
+  <img src="img/run4.png" class="runimg" hidden>
+  <img src="img/run5.png" class="runimg" hidden>
+  <img src="img/run6.png" class="runimg" hidden>
+  <img src="img/run7.png" class="runimg" hidden>
+  <img src="img/run8.png" class="runimg" hidden>
+  <img src="img/run9.png" class="runimg" hidden>
+  <img src="img/run10.png" class="runimg" hidden>
+  <img src="img/run11.png" class="runimg" hidden>
+  <img src="img/run12.png" class="runimg" hidden>
+  <img src="img/run13.png" class="runimg" hidden>
+
+  <img src="img/run2-1.png" alt="" class="runimg2" hidden>
+  <img src="img/run2-2.png" alt="" class="runimg2" hidden>
+  <img src="img/run2-3.png" alt="" class="runimg2" hidden>
+  <img src="img/run2-4.png" alt="" class="runimg2" hidden>
+  <img src="img/run2-5.png" alt="" class="runimg2" hidden>
+
+
+
+  <!--跳跃-->
+  <img src="img/run8.png" class="jumpimg" hidden>
+  <img src="img/run2-3.png" class="jumpimg2" hidden>
+
+
+
+
+  <!--障碍物-->
+  <img src="img/hid1.png" class="hidesimg" hidden>
+  <img src="img/hid2.png" class="hidesimg" hidden>
+  <img src="img/hid3.png" class="hidesimg" hidden>
+  <img src="img/hid4.png" class="hidesimg" hidden>
+  <img src="img/hid5.png" class="hidesimg" hidden>
+  <img src="img/hid6.png" class="hidesimg" hidden>
+  <img src="img/hid7.png" class="hidesimg" hidden>
+  <img src="img/hid8.png" class="hidesimg" hidden>
+  <img src="img/hid9.png" class="hidesimg" hidden>
+  <img src="img/hid10.png" class="hidesimg" hidden>
+  <img src="img/hid11.png" class="hidesimg" hidden>
+  <img src="img/hid12.png" class="hidesimg" hidden>
+  <img src="img/hid13.png" class="hidesimg" hidden>
+
+
+
+</body>
+</html>

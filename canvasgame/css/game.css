@@ -1,0 +1,130 @@
+body{
+    margin:0;padding:0;
+}
+*{
+    box-sizing: border-box;
+}
+canvas{
+    background:#ccc;
+}
+.runimg{
+    width:317px;height:258px;
+}
+canvas{
+    background:url(../img/banner2.jpg) repeat-x;
+    background-size:contain;
+}
+
+/*开始游戏*/
+.begin{
+    width:800px;height:300px;background:#ccc;
+    position:absolute;left:0;right:0;top:0;
+    bottom:0;margin:auto; border-radius:30px;
+    border:1px solid #333;
+    transform:scale(0.3,0.3) rotate(0deg);
+    animation:title 1s linear forwards;
+}
+.chick{
+    width:700px;height:200px;border:1px solid #333;
+    margin:50px;overflow:hidden;position:relative;
+}
+.one{
+    width:50%;height:100%;border-right:1px solid #333;
+    float:left;cursor:pointer;
+}
+.menu{
+    width:200px;height:30px;
+    position:absolute;z-index:2;
+    left:37px;top:5px;
+}
+.two{
+    width:40%;height:100%;
+    float:left;line-height:30px;
+    text-align:center;border:1px solid #333;
+    border-radius:15px;margin-left:10px;
+    margin-top:5px;cursor:pointer;
+}
+.three{
+    width:50%;height:100%;float: left;
+    display:none;
+
+}
+.renwu1{
+    background:url(../img/runnv.gif) no-repeat center center;
+    background-size:80% 100%;
+}
+.renwu2{
+    background:url(../img/runpi.gif) no-repeat center center;
+    background-size:60% 80%;
+}
+.nans{
+    width:100%;height:50%;border-bottom:1px solid #333;
+    line-height:100px;text-align:center;
+}
+.nanx{
+    width:100%;height:50%;
+}
+.nanx div{
+    width:33.3333%;height:100%;float:left;line-height:100px;
+    text-align:center;border-right:1px solid #333;
+    cursor:pointer;
+}
+.play div{
+    width:100px;height:50px;margin:0 auto;
+    margin-top:70px;border:1px solid #333;
+    line-height:50px;text-align:center;
+    cursor:pointer;border-radius:20px;
+}
+
+
+/*游戏结束*/
+.over{
+    position:absolute;left:0;right:0;
+    bottom:0;
+}
+
+/*four*/
+.four{
+  width:350px;height:100px;position:absolute;
+   background:rgba(0,0,0,0.6);bottom:50px;
+    transform:translate(0,150px);
+}
+.fourl{
+    left:0;
+}
+.four span{
+    display:block;color:#fff;padding-left:10px;
+    margin-top:10px;
+}
+.four span:nth-child(1){
+    font-size:15px;
+}
+.four span:nth-child(2){
+    font-size:13px;
+}
+.four span:nth-child(3){
+    font-size:15px;
+}
+.fourr{
+    right:0;
+}
+/*左上角*/
+.sorce{
+    width:280px;height:50px;
+    position:absolute;top:10px;
+    left:0;
+    line-height:50px;padding-left:20px;
+}
+.fenshu{
+    width:130px;height:100%;float:left;
+    border:1px solid #333;color:#fff;
+    border-radius:26px;
+    background:#0b3b8c;text-align:center;
+}
+
+.life{
+    width:100px;height:100%;float:left;
+    border:1px solid #333;
+    border-radius:26px;color:#fff;
+    margin-left:20px;background:#0b3b8c;
+}
